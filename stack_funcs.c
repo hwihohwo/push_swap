@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_funcs.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 09:21:43 by marvin            #+#    #+#             */
-/*   Updated: 2023/01/05 09:21:43 by marvin           ###   ########.fr       */
+/*   Updated: 2023/01/11 17:25:13 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	pop(t_stack *stack)
 {
 	int		ret;
 	t_node	*temp;
-	t_node 	*next_top;
+	t_node	*next_top;
 
 	temp = stack->top;
 	ret = stack->top->content;
@@ -62,4 +62,17 @@ int	is_empty(t_stack *stack)
 		return (0);
 	else
 		return (1);
+}
+
+void	init_stack(t_stack *stack)
+{
+	stack->bottom = NULL;
+	stack->top = NULL;
+	stack->count = 0;
+}
+
+void	clear_stack(t_stack *stack)
+{
+	while (stack->count > 0)
+		pop(stack);
 }
