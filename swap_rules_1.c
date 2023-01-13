@@ -22,6 +22,7 @@ void	sa(t_stack *stack_a)
 	temp = stack_a->top->content;
 	stack_a->top->content = stack_a->top->prev->content;
 	stack_a->top->prev->content = temp;
+	ft_printf("sa\n");
 }
 
 void	sb(t_stack *stack_b)
@@ -33,12 +34,14 @@ void	sb(t_stack *stack_b)
 	temp = stack_b->top->content;
 	stack_b->top->content = stack_b->top->prev->content;
 	stack_b->top->prev->content = temp;
+	ft_printf("sb\n");
 }
 
 void	ss(t_stack *stack_a, t_stack *stack_b)
 {
 	sa(stack_a);
 	sb(stack_b);
+	ft_printf("ss\n");
 }
 
 void	pa(t_stack *stack_a, t_stack *stack_b)
@@ -49,6 +52,7 @@ void	pa(t_stack *stack_a, t_stack *stack_b)
 		return ;
 	b = pop(stack_b);
 	push(stack_a, b);
+	ft_printf("pa\n");
 }
 
 void	pb(t_stack *stack_a, t_stack *stack_b)
@@ -59,4 +63,5 @@ void	pb(t_stack *stack_a, t_stack *stack_b)
 		return ;
 	a = pop(stack_a);
 	push(stack_b, a);
+	ft_printf("pb\n");
 }

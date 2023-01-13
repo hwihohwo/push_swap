@@ -25,6 +25,7 @@ void	ra(t_stack *stack_a)
 	stack_a->bottom->prev = temp;
 	temp->prev = NULL;
 	stack_a->bottom = temp;
+	ft_printf("ra\n");
 }
 
 void	rb(t_stack *stack_b)
@@ -40,12 +41,14 @@ void	rb(t_stack *stack_b)
 	stack_b->bottom->prev = temp;
 	temp->prev = NULL;
 	stack_b->bottom = temp;
+	ft_printf("rb\n");
 }
 
 void	rr(t_stack *stack_a, t_stack *stack_b)
 {
 	ra(stack_a);
 	rb(stack_b);
+	ft_printf("rr\n");
 }
 
 void	rra(t_stack *stack_a)
@@ -61,6 +64,7 @@ void	rra(t_stack *stack_a)
 	stack_a->top->next = temp;
 	temp->next = NULL;
 	stack_a->top = temp;
+	ft_printf("rra\n");
 }
 
 void	rrb(t_stack *stack_b)
@@ -76,4 +80,5 @@ void	rrb(t_stack *stack_b)
 	stack_b->top->next = temp;
 	temp->next = NULL;
 	stack_b->top = temp;
+	ft_printf("rrb\n");
 }

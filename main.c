@@ -105,4 +105,7 @@ int	main(int argc, char *argv[])
 	init_stack(&stack_a);
 	init_stack(&stack_b);
 	push_input(&stack_a, argc, argv);
+	find_and_move_ordered(&stack_a, &stack_b);
+	find_position(&stack_a, &stack_b);
+	return (0);
 }
