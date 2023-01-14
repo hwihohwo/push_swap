@@ -45,7 +45,7 @@ void	calc_path(t_stack *stack_a, t_node *pos)
 		count++;
 		temp = temp->next;
 	}
-	if (count < stack_a->count / 2)
+	if (count < (stack_a->count + 1) / 2)
 		while (stack_a->top == pos)
 			rra(stack_a);
 	else

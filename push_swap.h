@@ -19,10 +19,12 @@
 
 typedef struct s_node
 {
-	int		content;
-	t_node	*next;
-	t_node	*prev;
-}	t_node;
+	int				content;
+	struct s_node	*next;
+	struct s_node	*prev;
+};
+
+typedef struct s_node	t_node;
 
 typedef struct s_stack
 {
@@ -51,5 +53,11 @@ int		is_integer(char *argv);
 int		check_dup(t_stack *stack_a, int num);
 int		check_and_push_integer(t_stack *stack_a, char *argv);
 void	push_input(t_stack *stack_a, int argc, char *argv[]);
+int		check_ordered_length(t_node *current);
+void	mov_ordered_to_bottom(t_stack *stack_a, t_node *save);
+void	mov_to_stack_b(t_stack *stack_a, t_stack *stack_b, int count);
+void	find_and_move_ordered(t_stack *stack_a, t_stack *stack_b);
+void	find_position(t_stack *stack_a, t_stack *stack_b);
+void	calc_path(t_stack *stack_a, t_node *pos);
 
 #endif

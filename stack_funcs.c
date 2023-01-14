@@ -40,7 +40,6 @@ int	pop(t_stack *stack)
 {
 	int		ret;
 	t_node	*temp;
-	t_node	*next_top;
 
 	temp = stack->top;
 	ret = stack->top->content;

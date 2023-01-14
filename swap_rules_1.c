@@ -15,7 +15,6 @@
 void	sa(t_stack *stack_a)
 {
 	int	temp;
-	int	count;
 
 	if (stack_a->count < 2)
 		return ;

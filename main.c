@@ -43,8 +43,8 @@ int	check_dup(t_stack *stack_a, int num)
 
 int	check_and_push_integer(t_stack *stack_a, char *argv)
 {
-	int		i;
-	long	ret;
+	int			i;
+	long long	ret;
 
 	i = 0;
 	while (argv[i])
@@ -68,11 +68,8 @@ int	check_and_push_integer(t_stack *stack_a, char *argv)
 
 void	push_input(t_stack *stack_a, int argc, char *argv[])
 {
-	int		i;
 	int		j;
-	long	num;
 
-	i = 0;
 	j = 1;
 	while (j < argc)
 	{
