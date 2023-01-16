@@ -33,6 +33,15 @@ typedef struct s_stack
 	int		count;
 }	t_stack;
 
+typedef struct s_info
+{
+	t_node 	*b_save;
+	t_node	*a_save;
+	int		order_count;
+	int		rr_flag;
+	int		rrr_flag;
+}	t_info;
+
 void	push(t_stack *stack, int content);
 int		pop(t_stack *stack);
 int		is_empty(t_stack *stack);
@@ -57,7 +66,7 @@ int		check_ordered_length(t_node *current);
 void	mov_ordered_to_bottom(t_stack *stack_a, t_node *save);
 void	mov_to_stack_b(t_stack *stack_a, t_stack *stack_b, int count);
 void	find_and_move_ordered(t_stack *stack_a, t_stack *stack_b);
-void	find_position(t_stack *stack_a, t_stack *stack_b);
+void	sort_element(t_stack *stack_a, t_stack *stack_b);
 void	calc_path(t_stack *stack_a, t_node *pos);
 
 #endif

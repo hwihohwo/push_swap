@@ -12,30 +12,30 @@
 
 #include "push_swap.h"
 
-int	order_calc(t_stack *stack_a, t_stack *stack_b, int count_a, int count_b)
+t_info	*order_calc(t_stack *stk_a, t_stack *stk_b, int count_a, int count_b)
 {
-	int	ret;
+	t_info	*ret;
 
-	ret = 0;
-	if (count_a < (stack_a->count + 1) / 2 && \
-		count_b < (stack_b->count + 1) / 2)
-			ret = half_under(stack_a, stack_b, count_a, count_b);
-	else if (count_a >= (stack_a->count + 1) /2  && \
-		count_b >= (stack_b->count + 1) / 2)
-			ret = half_upper(stack_a, stack_b, count_a, count_b);
+	if (count_a < (stk_a->count + 1) / 2 && \
+		count_b < (stk_b->count + 1) / 2)
+			ret = half_under(stk_a, stk_b, count_a, count_b);
+	else if (count_a >= (stk_a->count + 1) /2  && \
+		count_b >= (stk_b->count + 1) / 2)
+			ret = half_upper(stk_a, stk_b, count_a, count_b);
 	else
 	{
-		ret += common_case(stack_a, count_a);
-		ret += common_case(stack_b, count_b);
+		ret = common_case(stk_a, count_a);
+		ret = common_case(stk_b, count_b);
 	}
 	return (ret);
 }
 
-int	order_count(t_stack *stack_a, t_stack *stack_b, t_node *b_temp)
+t_info	*order_count(t_stack *stack_a, t_stack *stack_b, t_node *b_temp)
 {
 	int		count_a;
 	int		count_b;
-	t_node *tmp;
+	t_node 	*tmp;
+	t_info	*save;
 
 	count_a = 0;
 	count_b = 0;
@@ -51,68 +51,56 @@ int	order_count(t_stack *stack_a, t_stack *stack_b, t_node *b_temp)
 		count_a++;
 		tmp = tmp->next;
 	}
-	return (order_calc(stack_a, stack_b, count_a, count_b));
+	save = order_calc(stack_a, stack_b, count_a, count_b);
+	save->a_save = tmp;
+	return (save);
 }
 
-void	find_best_element(t_stack *stack_a, t_stack *stack_b)
+t_info	*find_best_element(t_stack *stack_a, t_stack *stack_b)
 {
-	int		count;
 	int		max;
-	t_node *temp;
+	t_node 	*temp;
+	t_info	*save;
 
 	temp = stack_b->bottom;
 	max = 0;
 	while (temp)
 	{
-		count = order_count(stack_a, stack_b, temp);
+		save = order_count(stack_a, stack_b, temp);
+		if (max < save->order_count)
+		{
+			max = save->order_count;
+			save->b_save = temp;
+		}
 		temp = temp->next;
-		if (max < count)
-			max = count;
 	}
+	return (save);
 }
 
-// void	find_position(t_stack *stack_a, t_stack *stack_b)
-// {
-// 	t_node	*start;
-// 	t_node	*temp;
-// 	int		b_top;
+void	sort_element(t_stack *stack_a, t_stack *stack_b)
+{
+	t_node	*start;
+	t_info	*save;
+	int		count;
 
-// 	start = stack_a->bottom;
-// 	while (stack_b->count > 0)
-// 	{
-// 		b_top = stack_b->top->content;
-// 		temp = start;
-// 		if (temp->content > b_top && temp->next->content < b_top)
-// 		{
-// 			calc_path(stack_a, temp);
-// 			pa(stack_a, stack_b);
-// 		}
-// 		else
-// 		{
-// 			if (temp->next == 0)
-// 				temp = stack_a->bottom;
-// 			else
-// 				temp = temp->next;
-// 		}
-// 	}
-// }
-
-// void	calc_path(t_stack *stack_a, t_node *pos)
-// {
-// 	t_node	*temp;
-// 	int		count;
-
-// 	count = 0;
-// 	temp = stack_a->bottom;
-// 	while (temp == pos)
-// 	{
-// 		count++;
-// 		temp = temp->next;
-// 	}
-// 	if (count < (stack_a->count + 1) / 2)
-// 		while (stack_a->top == pos)
-// 			rra(stack_a);
-// 	else
-// 		while (stack_a->top == pos)
-// 			ra(stack_a);
-// }
+	save = 0;
+	start = stack_a->bottom;
+	while (stack_b->count > 0)
+	{
+		save = find_best_element(stack_a, stack_b);
+		if (save->rr_flag == 1)
+			case_rr(stack_a, stack_b, save);
+		else if (save->rrr_flag == 1)
+			case_rrr(stack_a, stack_b, save);
+		else
+			case_common(stack_a, stack_b, save);
+		pa(stack_a, stack_b);
+	}
+	count = count_index(stack_a, start);
+	if (count < (stack_a->count - count))
+		while (stack_a->bottom != start)
+			rra(stack_a);
+	else
+		while (stack_a->bottom != start)
+			ra(stack_a);
+}
