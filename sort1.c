@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quick_sort.c                                       :+:      :+:    :+:   */
+/*   sort1.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 13:21:22 by seonghwc          #+#    #+#             */
-/*   Updated: 2023/01/11 18:12:36 by seonghwc         ###   ########.fr       */
+/*   Updated: 2023/01/17 19:49:40 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 int	check_ordered_length(t_node *current)
 {
 	int		count;
-	t_node *cursur;
+	t_node	*cursur;
 
 	count = 0;
 	cursur = current;
-	while (cursur->next != 0 && cursur->content > cursur->next->content)
+	while (cursur->next != 0 && cursur->n > cursur->next->n)
 	{
 		count++;
 		cursur = cursur->next;
@@ -30,26 +30,26 @@ int	check_ordered_length(t_node *current)
 void	mov_ordered_to_bottom(t_stack *stack_a, t_node *save)
 {
 	int		bottom_to_save;
-	t_node *temp;
+	t_node	*temp;
 
 	bottom_to_save = 0;
 	temp = stack_a->bottom;
-	while (temp != save)
+	while (temp->n != save->n)
 	{
 		bottom_to_save++;
 		temp = temp->next;
 	}
 	if (bottom_to_save <= stack_a->count / 2)
-		while (stack_a->bottom == save)
+		while (stack_a->bottom->n != save->n)
 			rra(stack_a);
 	else if (bottom_to_save > stack_a->count / 2)
-		while (stack_a->bottom == save)
+		while (stack_a->bottom->n != save->n)
 			ra(stack_a);
 }
 
 void	mov_to_stack_b(t_stack *stack_a, t_stack *stack_b, int count)
 {
-	t_node *order_end;
+	t_node	*order_end;
 
 	order_end = stack_a->bottom;
 	while (count > 0)
@@ -57,7 +57,7 @@ void	mov_to_stack_b(t_stack *stack_a, t_stack *stack_b, int count)
 		order_end = order_end->next;
 		count--;
 	}
-	while (stack_a->top != order_end)
+	while (stack_a->top->n != order_end->n)
 		pb(stack_a, stack_b);
 }
 
@@ -82,5 +82,5 @@ void	find_and_move_ordered(t_stack *stack_a, t_stack *stack_b)
 		current = current->next;
 	}
 	mov_ordered_to_bottom(stack_a, save);
-	mov_to_stack_b(stack_a, stack_b, count);
+	mov_to_stack_b(stack_a, stack_b, max);
 }

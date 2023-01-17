@@ -6,11 +6,23 @@
 /*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 09:34:49 by marvin            #+#    #+#             */
-/*   Updated: 2023/01/11 18:14:44 by seonghwc         ###   ########.fr       */
+/*   Updated: 2023/01/17 19:23:34 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	print_all(t_stack *stack)
+{
+	t_node	*temp;
+
+	temp = stack->bottom;
+	while (temp)
+	{
+		ft_printf("%d\n", temp->n);
+		temp = temp->next;
+	}
+}
 
 int	main(int argc, char *argv[])
 {

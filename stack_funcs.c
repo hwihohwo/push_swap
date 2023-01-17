@@ -6,7 +6,7 @@
 /*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 09:21:43 by marvin            #+#    #+#             */
-/*   Updated: 2023/01/11 17:25:13 by seonghwc         ###   ########.fr       */
+/*   Updated: 2023/01/17 20:32:08 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	push(t_stack *stack, int content)
 	node = (t_node *)malloc(sizeof(t_node));
 	if (node == NULL)
 		exit(1);
-	node->content = content;
+	node->n = content;
 	node->next = NULL;
 	if (stack->bottom == NULL && stack->top == NULL)
 	{
@@ -42,13 +42,16 @@ int	pop(t_stack *stack)
 	t_node	*temp;
 
 	temp = stack->top;
-	ret = stack->top->content;
-	if (stack->top->prev != NULL)
+	ret = stack->top->n;
+	if (stack->top->prev != 0)
+	{
 		stack->top = stack->top->prev;
+		stack->top->next = 0;
+	}
 	else
 	{
-		stack->top = NULL;
-		stack->bottom = NULL;
+		stack->top = 0;
+		stack->bottom = 0;
 	}
 	free(temp);
 	stack->count--;

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap_rules.c                                       :+:      :+:    :+:   */
+/*   swap_rules_1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 14:07:28 by marvin            #+#    #+#             */
-/*   Updated: 2023/01/05 14:07:28 by marvin           ###   ########.fr       */
+/*   Updated: 2023/01/17 16:20:15 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	sa(t_stack *stack_a)
 
 	if (stack_a->count < 2)
 		return ;
-	temp = stack_a->top->content;
-	stack_a->top->content = stack_a->top->prev->content;
-	stack_a->top->prev->content = temp;
+	temp = stack_a->top->n;
+	stack_a->top->n = stack_a->top->prev->n;
+	stack_a->top->prev->n = temp;
 	ft_printf("sa\n");
 }
 
@@ -30,9 +30,9 @@ void	sb(t_stack *stack_b)
 
 	if (stack_b->count < 2)
 		return ;
-	temp = stack_b->top->content;
-	stack_b->top->content = stack_b->top->prev->content;
-	stack_b->top->prev->content = temp;
+	temp = stack_b->top->n;
+	stack_b->top->n = stack_b->top->prev->n;
+	stack_b->top->prev->n = temp;
 	ft_printf("sb\n");
 }
 

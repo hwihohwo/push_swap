@@ -3,28 +3,33 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
+#    By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/13 23:26:17 by marvin            #+#    #+#              #
-#    Updated: 2023/01/13 23:26:17 by marvin           ###   ########.fr        #
+#    Updated: 2023/01/17 19:03:41 by seonghwc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME                    = push_swap
 CC						= cc
 SRCS                    = main.c \
-						  stack_funcs.c \
-						  swap_rules_1.c \
-						  swap_rules_2.c \
-						  swap_rules_3.c \
-						  sort1.c \
-						  sort2.c
+						push_swap_utils_1.c \
+						push_swap_utils_2.c \
+						sort_small.c \
+						sort1.c \
+						sort2.c \
+						sort3.c \
+						sort4.c \
+						stack_funcs.c \
+						swap_rules_1.c \
+						swap_rules_2.c \
+						swap_rules_3.c
 OBJS                    = $(SRCS:%.c=%.o)
 FLAGS                   = -Wall -Wextra -Werror
 
 $(NAME)     :   $(OBJS)
 	@$(MAKE) -C libft/ re
-	$(CC) $(FLAGS) -o $(NAME) $(SRCS) -L libft/ -I .
+	$(CC) $(FLAGS) -o $(NAME) $(SRCS) -L ./libft/ -lft -I . -fsanitize=address -g
 all :   $(NAME)
 clean   :
 	rm -f $(OBJS)

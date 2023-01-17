@@ -6,7 +6,7 @@
 /*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 09:22:00 by marvin            #+#    #+#             */
-/*   Updated: 2023/01/11 18:12:33 by seonghwc         ###   ########.fr       */
+/*   Updated: 2023/01/17 18:43:12 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 # include <unistd.h>
 # include "./libft/libft.h"
 
-typedef struct s_node
+struct s_node
 {
-	int				content;
+	int				n;
 	struct s_node	*next;
 	struct s_node	*prev;
 };
@@ -35,7 +35,7 @@ typedef struct s_stack
 
 typedef struct s_info
 {
-	t_node 	*b_save;
+	t_node	*b_save;
 	t_node	*a_save;
 	int		order_count;
 	int		rr_flag;
@@ -68,5 +68,27 @@ void	mov_to_stack_b(t_stack *stack_a, t_stack *stack_b, int count);
 void	find_and_move_ordered(t_stack *stack_a, t_stack *stack_b);
 void	sort_element(t_stack *stack_a, t_stack *stack_b);
 void	calc_path(t_stack *stack_a, t_node *pos);
+int		count_index(t_stack *stk, t_node *node);
+void	move_to_bottom(t_stack *stack, t_node *node);
+void	move_to_top(t_stack *stack, t_node *node);
+void	sort_element_small(t_stack *stack_a, t_stack *stack_b);
+void	sort_element_3(t_stack *stack_a);
+void	sort_element_4(t_stack *stack_a, t_stack *stack_b);
+void	sort_element_5(t_stack *stack_a, t_stack *stack_b);
+t_node	*find_min_node(t_stack *stack);
+int		check_ordered_length(t_node *current);
+void	mov_ordered_to_bottom(t_stack *stack_a, t_node *save);
+void	mov_to_stack_b(t_stack *stack_a, t_stack *stack_b, int count);
+void	find_and_move_ordered(t_stack *stack_a, t_stack *stack_b);
+t_info	*order_calc(t_stack *stk_a, t_stack *stk_b, int count_a, int count_b);
+t_info	*order_count(t_stack *stack_a, t_stack *stack_b, t_node *b_tmp);
+t_info	*find_best_element(t_stack *stack_a, t_stack *stack_b);
+void	sort_element(t_stack *stack_a, t_stack *stack_b);
+t_info	*half_under(t_stack *stk_a, t_stack *stk_b, int count_a, int count_b);
+t_info	*half_upper(t_stack *stk_a, t_stack *stk_b, int count_a, int count_b);
+t_info	*opposite_dir(t_stack *stack, int count, t_info *ret);
+void	case_rr(t_stack *stk_a, t_stack *stk_b, t_info *save);
+void	case_rrr(t_stack *stk_a, t_stack *stk_b, t_info *save);
+void	case_common(t_stack *stk_a, t_stack *stk_b, t_info *save);
 
 #endif

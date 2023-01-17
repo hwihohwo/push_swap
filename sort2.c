@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 18:03:54 by marvin            #+#    #+#             */
-/*   Updated: 2023/01/13 18:03:54 by marvin           ###   ########.fr       */
+/*   Updated: 2023/01/17 22:41:08 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,38 +19,48 @@ t_info	*order_calc(t_stack *stk_a, t_stack *stk_b, int count_a, int count_b)
 	if (count_a < (stk_a->count + 1) / 2 && \
 		count_b < (stk_b->count + 1) / 2)
 			ret = half_under(stk_a, stk_b, count_a, count_b);
-	else if (count_a >= (stk_a->count + 1) /2  && \
+	else if (count_a >= (stk_a->count + 1) / 2 && \
 		count_b >= (stk_b->count + 1) / 2)
 			ret = half_upper(stk_a, stk_b, count_a, count_b);
 	else
 	{
-		ret = common_case(stk_a, count_a);
-		ret = common_case(stk_b, count_b);
+		ret = (t_info *)malloc(sizeof(t_info));
+		if (ret == 0)
+		{
+			clear_stack(stk_a);
+			clear_stack(stk_b);
+			exit(1);
+		}
+		ret = opposite_dir(stk_a, count_a, ret);
+		ret = opposite_dir(stk_b, count_b, ret);
 	}
 	return (ret);
 }
 
-t_info	*order_count(t_stack *stack_a, t_stack *stack_b, t_node *b_temp)
+t_info	*order_count(t_stack *stack_a, t_stack *stack_b, t_node *b_tmp)
 {
 	int		count_a;
 	int		count_b;
-	t_node 	*tmp;
+	t_node	*tmp;
 	t_info	*save;
 
 	count_a = 0;
 	count_b = 0;
 	tmp = stack_b->bottom;
-	while (tmp != b_temp)
+	while (tmp != b_tmp)
 	{
 		count_b++;
 		tmp = tmp->next;
 	}
 	tmp = stack_a->bottom;
-	while (!(tmp->content > tmp->content && tmp->next->content < tmp->content))
+	while (tmp->next && !(tmp->n > b_tmp->n && tmp->next->n < b_tmp->n))
 	{
 		count_a++;
 		tmp = tmp->next;
 	}
+	if (tmp == stack_a->top)
+		if (tmp->n < b_tmp->n)
+			count_a++;
 	save = order_calc(stack_a, stack_b, count_a, count_b);
 	save->a_save = tmp;
 	return (save);
@@ -59,7 +69,7 @@ t_info	*order_count(t_stack *stack_a, t_stack *stack_b, t_node *b_temp)
 t_info	*find_best_element(t_stack *stack_a, t_stack *stack_b)
 {
 	int		max;
-	t_node 	*temp;
+	t_node	*temp;
 	t_info	*save;
 
 	temp = stack_b->bottom;
@@ -81,7 +91,6 @@ void	sort_element(t_stack *stack_a, t_stack *stack_b)
 {
 	t_node	*start;
 	t_info	*save;
-	int		count;
 
 	save = 0;
 	start = stack_a->bottom;
@@ -95,12 +104,9 @@ void	sort_element(t_stack *stack_a, t_stack *stack_b)
 		else
 			case_common(stack_a, stack_b, save);
 		pa(stack_a, stack_b);
+		if (stack_a->top->prev->n < stack_a->top->n)
+			start = stack_a->top;
 	}
-	count = count_index(stack_a, start);
-	if (count < (stack_a->count - count))
-		while (stack_a->bottom != start)
-			rra(stack_a);
-	else
-		while (stack_a->bottom != start)
-			ra(stack_a);
+	free(save);
+	move_to_bottom(stack_a, start);
 }

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_utils.c                                  :+:      :+:    :+:   */
+/*   push_swap_utils_1.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 20:21:28 by marvin            #+#    #+#             */
-/*   Updated: 2023/01/16 20:21:28 by marvin           ###   ########.fr       */
+/*   Updated: 2023/01/17 19:52:30 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	count_index(t_stack stk, t_node *node)
+int	count_index(t_stack *stk, t_node *node)
 {
 	int		count;
 	t_node	*temp;
@@ -21,7 +21,7 @@ int	count_index(t_stack stk, t_node *node)
 	temp = stk->bottom;
 	while (temp != node)
 	{
-		count++
+		count++;
 		temp = temp->next;
 	}
 	return (count);
@@ -49,7 +49,7 @@ int	check_dup(t_stack *stack_a, int num)
 	temp = stack_a->bottom;
 	while (temp)
 	{
-		if (temp->content == num)
+		if (temp->n == num)
 			return (0);
 		temp = temp->next;
 	}
