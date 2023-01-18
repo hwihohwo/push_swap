@@ -12,14 +12,14 @@
 
 #include "push_swap.h"
 
-int	count_index(t_stack *stk, t_node *node)
+int	count_index(t_stack *stk, int n)
 {
 	int		count;
 	t_node	*temp;
 
 	count = 0;
 	temp = stk->bottom;
-	while (temp != node)
+	while (temp != n)
 	{
 		count++;
 		temp = temp->next;

@@ -62,7 +62,7 @@ t_info	*order_count(t_stack *stack_a, t_stack *stack_b, t_node *b_tmp)
 		if (tmp->n < b_tmp->n)
 			count_a++;
 	save = order_calc(stack_a, stack_b, count_a, count_b);
-	save->a_save = tmp;
+	save->a_save = tmp->n;
 	return (save);
 }
 
@@ -80,7 +80,7 @@ t_info	*find_best_element(t_stack *stack_a, t_stack *stack_b)
 		if (max < save->order_count)
 		{
 			max = save->order_count;
-			save->b_save = temp;
+			save->b_save = temp->n;
 		}
 		temp = temp->next;
 	}

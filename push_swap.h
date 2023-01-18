@@ -35,8 +35,8 @@ typedef struct s_stack
 
 typedef struct s_info
 {
-	t_node	*b_save;
-	t_node	*a_save;
+	int		b_save;
+	int		a_save;
 	int		order_count;
 	int		rr_flag;
 	int		rrr_flag;
@@ -68,7 +68,7 @@ void	mov_to_stack_b(t_stack *stack_a, t_stack *stack_b, int count);
 void	find_and_move_ordered(t_stack *stack_a, t_stack *stack_b);
 void	sort_element(t_stack *stack_a, t_stack *stack_b);
 void	calc_path(t_stack *stack_a, t_node *pos);
-int		count_index(t_stack *stk, t_node *node);
+int		count_index(t_stack *stk, int n);
 void	move_to_bottom(t_stack *stack, t_node *node);
 void	move_to_top(t_stack *stack, t_node *node);
 void	sort_element_small(t_stack *stack_a, t_stack *stack_b);
