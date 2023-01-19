@@ -6,7 +6,7 @@
 /*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 18:17:48 by seonghwc          #+#    #+#             */
-/*   Updated: 2023/01/17 18:59:49 by seonghwc         ###   ########.fr       */
+/*   Updated: 2023/01/19 23:46:16 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,17 @@ void	move_to_top(t_stack *stack, t_node *node)
 		while (stack->top->n != node->n)
 			rra(stack);
 	else
-		while (stack->bottom->n != node->n)
+		while (stack->top->n != node->n)
 			ra(stack);
+}
+
+int	find_right_position(t_stack *stack, int n)
+{
+	t_node	*temp;
+
+	temp = stack->bottom;
+	while (1)
+	{
+		if (temp->)
+	}
 }

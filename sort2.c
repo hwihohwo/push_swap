@@ -6,7 +6,7 @@
 /*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 18:03:54 by marvin            #+#    #+#             */
-/*   Updated: 2023/01/17 22:41:08 by seonghwc         ###   ########.fr       */
+/*   Updated: 2023/01/19 22:31:22 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ t_info	*order_calc(t_stack *stk_a, t_stack *stk_b, int count_a, int count_b)
 			clear_stack(stk_b);
 			exit(1);
 		}
+		ret->order_count = 0;
 		ret = opposite_dir(stk_a, count_a, ret);
 		ret = opposite_dir(stk_b, count_b, ret);
 	}
@@ -47,7 +48,7 @@ t_info	*order_count(t_stack *stack_a, t_stack *stack_b, t_node *b_tmp)
 	count_a = 0;
 	count_b = 0;
 	tmp = stack_b->bottom;
-	while (tmp != b_tmp)
+	while (tmp->n != b_tmp->n)
 	{
 		count_b++;
 		tmp = tmp->next;
@@ -58,7 +59,7 @@ t_info	*order_count(t_stack *stack_a, t_stack *stack_b, t_node *b_tmp)
 		count_a++;
 		tmp = tmp->next;
 	}
-	if (tmp == stack_a->top)
+	if (tmp->n == stack_a->top->n)
 		if (tmp->n < b_tmp->n)
 			count_a++;
 	save = order_calc(stack_a, stack_b, count_a, count_b);
@@ -68,23 +69,28 @@ t_info	*order_count(t_stack *stack_a, t_stack *stack_b, t_node *b_tmp)
 
 t_info	*find_best_element(t_stack *stack_a, t_stack *stack_b)
 {
-	int		max;
+	t_info	*min;
 	t_node	*temp;
 	t_info	*save;
 
 	temp = stack_b->bottom;
-	max = 0;
+	min = 0;
+	save = 0;
 	while (temp)
 	{
 		save = order_count(stack_a, stack_b, temp);
-		if (max < save->order_count)
+		save->b_save = temp->n;
+		if (min == 0 || min->order_count > save->order_count)
 		{
-			max = save->order_count;
-			save->b_save = temp->n;
+			if (min != 0)
+				free(min);
+			min = save;
 		}
+		else
+			free(save);
 		temp = temp->next;
 	}
-	return (save);
+	return (min);
 }
 
 void	sort_element(t_stack *stack_a, t_stack *stack_b)
@@ -105,7 +111,10 @@ void	sort_element(t_stack *stack_a, t_stack *stack_b)
 			case_common(stack_a, stack_b, save);
 		pa(stack_a, stack_b);
 		if (stack_a->top->prev->n < stack_a->top->n)
-			start = stack_a->top;
+		{
+			ra(stack_a);
+			start = stack_a->bottom;
+		}
 	}
 	free(save);
 	move_to_bottom(stack_a, start);

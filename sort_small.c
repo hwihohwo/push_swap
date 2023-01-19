@@ -6,7 +6,7 @@
 /*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 00:01:57 by marvin            #+#    #+#             */
-/*   Updated: 2023/01/17 20:40:52 by seonghwc         ###   ########.fr       */
+/*   Updated: 2023/01/19 21:26:41 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,10 @@ void	sort_element_4(t_stack *stack_a, t_stack *stack_b)
 	t_node	*start;
 	t_node	*temp;
 
-	start = stack_a->bottom;
-	temp = stack_a->bottom;
 	pb(stack_a, stack_b);
 	sort_element_3(stack_a);
+	temp = stack_a->bottom;
+	start = stack_a->bottom;
 	while (temp->next)
 	{
 		if (stack_b->top->n < temp->n && \
@@ -73,11 +73,14 @@ void	sort_element_4(t_stack *stack_a, t_stack *stack_b)
 		else
 			temp = temp->next;
 	}
-	while (temp != stack_a->top)
+	while (temp->n != stack_a->top->n)
 		ra(stack_a);
 	pa(stack_a, stack_b);
 	if (stack_a->top->prev->n < stack_a->top->n)
-		start = stack_a->top;
+	{
+		ra(stack_a);
+		start = stack_a->bottom;
+	}
 	move_to_bottom(stack_a, start);
 }
 
@@ -104,7 +107,7 @@ t_node	*find_min_node(t_stack *stack)
 	t_node	*save;
 	int		min;
 
-	min = 0;
+	min = stack->bottom->n;
 	temp = stack->bottom;
 	save = stack->bottom;
 	while (temp)

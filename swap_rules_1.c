@@ -6,7 +6,7 @@
 /*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 14:07:28 by marvin            #+#    #+#             */
-/*   Updated: 2023/01/17 16:20:15 by seonghwc         ###   ########.fr       */
+/*   Updated: 2023/01/19 20:36:30 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,22 +45,16 @@ void	ss(t_stack *stack_a, t_stack *stack_b)
 
 void	pa(t_stack *stack_a, t_stack *stack_b)
 {
-	int	b;
-
 	if (is_empty(stack_b) == 0)
 		return ;
-	b = pop(stack_b);
-	push(stack_a, b);
+	push(stack_a, pop(stack_b));
 	ft_printf("pa\n");
 }
 
 void	pb(t_stack *stack_a, t_stack *stack_b)
 {
-	int	a;
-
 	if (is_empty(stack_a) == 0)
 		return ;
-	a = pop(stack_a);
-	push(stack_b, a);
+	push(stack_b, pop(stack_a));
 	ft_printf("pb\n");
 }

@@ -6,26 +6,15 @@
 /*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 09:34:49 by marvin            #+#    #+#             */
-/*   Updated: 2023/01/17 19:23:34 by seonghwc         ###   ########.fr       */
+/*   Updated: 2023/01/19 22:36:48 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	print_all(t_stack *stack)
-{
-	t_node	*temp;
-
-	temp = stack->bottom;
-	while (temp)
-	{
-		ft_printf("%d\n", temp->n);
-		temp = temp->next;
-	}
-}
-
 int	main(int argc, char *argv[])
 {
+	t_stack	stack_tmp;
 	t_stack	stack_a;
 	t_stack	stack_b;
 
@@ -33,7 +22,10 @@ int	main(int argc, char *argv[])
 		return (0);
 	init_stack(&stack_a);
 	init_stack(&stack_b);
-	push_input(&stack_a, argc, argv);
+	init_stack(&stack_tmp);
+	push_input(&stack_tmp, argc, argv);
+	while (stack_tmp.count > 0)
+		push(&stack_a, pop(&stack_tmp));
 	if (stack_a.count <= 5)
 	{
 		sort_element_small(&stack_a, &stack_b);
