@@ -87,9 +87,7 @@ void	sort_element_4(t_stack *stack_a, t_stack *stack_b)
 void	sort_element_5(t_stack *stack_a, t_stack *stack_b)
 {
 	t_node	*temp;
-	t_node	*start;
 
-	start = stack_a->bottom;
 	temp = find_min_node(stack_a);
 	move_to_top(stack_a, temp);
 	pb(stack_a, stack_b);

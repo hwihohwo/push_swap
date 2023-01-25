@@ -12,6 +12,7 @@
 
 #include "push_swap.h"
 
+
 int	main(int argc, char *argv[])
 {
 	t_stack	stack_tmp;
@@ -26,14 +27,29 @@ int	main(int argc, char *argv[])
 	push_input(&stack_tmp, argc, argv);
 	while (stack_tmp.count > 0)
 		push(&stack_a, pop(&stack_tmp));
+	if (check_ordered(&stack_a))
+		return (0);
 	if (stack_a.count <= 5)
 	{
 		sort_element_small(&stack_a, &stack_b);
 		return (0);
 	}
-	find_and_move_ordered(&stack_a, &stack_b);
+	push_to_b_and_sort3(&stack_a, &stack_b);
 	if (stack_b.count != 0)
 		sort_element(&stack_a, &stack_b);
 	clear_stack(&stack_a);
 	return (0);
 }
+
+
+// void	print_all(t_stack *stack)
+// {
+// 	t_node	*temp;
+
+// 	temp = stack->top;
+// 	while (temp)
+// 	{
+// 		ft_printf("%d\n", temp->n);
+// 		temp = temp->prev;
+// 	}
+// }

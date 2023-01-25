@@ -12,75 +12,64 @@
 
 #include "push_swap.h"
 
-int	check_ordered_length(t_node *current)
-{
-	int		count;
-	t_node	*cursur;
 
-	count = 0;
-	cursur = current;
-	while (cursur->next != 0 && cursur->n > cursur->next->n)
+t_node	*find_pivot_sub(t_stack *stack)
+{
+	int		n;
+	t_node	*check;
+
+	n = 0;
+	check = stack->bottom;
+	while (n < 3)
 	{
-		count++;
-		cursur = cursur->next;
+		check = check->next;
+		n++;
 	}
-	return (count);
+	return (check);
 }
 
-void	mov_ordered_to_bottom(t_stack *stack_a, t_node *save)
+int	find_pivot(t_stack *stack)
 {
-	int		bottom_to_save;
+	int		n;
+	t_node	*ret;
+	t_node	*check;
 	t_node	*temp;
 
-	bottom_to_save = 0;
-	temp = stack_a->bottom;
-	while (temp->n != save->n)
+	n = 0;
+	check = find_pivot_sub(stack);
+	ret = check;
+	while (1)
 	{
-		bottom_to_save++;
-		temp = temp->next;
-	}
-	if (bottom_to_save <= stack_a->count / 2)
-		while (stack_a->bottom->n != save->n)
-			rra(stack_a);
-	else if (bottom_to_save > stack_a->count / 2)
-		while (stack_a->bottom->n != save->n)
-			ra(stack_a);
-}
-
-void	mov_to_stack_b(t_stack *stack_a, t_stack *stack_b, int count)
-{
-	t_node	*order_end;
-
-	order_end = stack_a->bottom;
-	while (count > 0)
-	{
-		order_end = order_end->next;
-		count--;
-	}
-	while (stack_a->top->n != order_end->n)
-		pb(stack_a, stack_b);
-}
-
-void	find_and_move_ordered(t_stack *stack_a, t_stack *stack_b)
-{
-	t_node	*current;
-	t_node	*save;
-	int		count;
-	int		max;
-
-	max = 0;
-	current = stack_a->bottom;
-	save = stack_a->bottom;
-	while (current->next)
-	{
-		count = check_ordered_length(current);
-		if (max < count)
+		temp = check;
+		n = 0;
+		while (temp)
 		{
-			max = count;
-			save = current;
+			if (temp->n < ret->n)
+				n++;
+			temp = temp->next;
 		}
-		current = current->next;
+		if (n == (stack->count - 3) / 2)
+			return (ret->n);
+		ret = ret->next;
 	}
-	mov_ordered_to_bottom(stack_a, save);
-	mov_to_stack_b(stack_a, stack_b, max);
+}
+
+void	push_to_b_and_sort3(t_stack *stack_a, t_stack *stack_b)
+{
+	int		pivot;
+	t_node	*temp;
+
+	temp = stack_a->bottom;
+	pivot = find_pivot(stack_a);
+	while (stack_a->count > 3)
+	{
+		if (temp->n >= pivot)
+			pb(stack_a, stack_b);
+		else
+		{
+			pb(stack_a, stack_b);
+			sb(stack_b);
+		}
+	}
+	sort_element_3(stack_a);
 }

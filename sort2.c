@@ -42,6 +42,7 @@ t_info	*order_count(t_stack *stack_a, t_stack *stack_b, t_node *b_tmp)
 {
 	int		count_a;
 	int		count_b;
+	int		pos;
 	t_node	*tmp;
 	t_info	*save;
 
@@ -54,16 +55,15 @@ t_info	*order_count(t_stack *stack_a, t_stack *stack_b, t_node *b_tmp)
 		tmp = tmp->next;
 	}
 	tmp = stack_a->bottom;
-	while (tmp->next && !(tmp->n > b_tmp->n && tmp->next->n < b_tmp->n))
+	pos = find_right_position(stack_a, b_tmp->n);
+	while (tmp->n != pos)
 	{
 		count_a++;
 		tmp = tmp->next;
 	}
-	if (tmp->n == stack_a->top->n)
-		if (tmp->n < b_tmp->n)
-			count_a++;
 	save = order_calc(stack_a, stack_b, count_a, count_b);
 	save->a_save = tmp->n;
+	save->b_save = b_tmp->n;
 	return (save);
 }
 
@@ -79,7 +79,6 @@ t_info	*find_best_element(t_stack *stack_a, t_stack *stack_b)
 	while (temp)
 	{
 		save = order_count(stack_a, stack_b, temp);
-		save->b_save = temp->n;
 		if (min == 0 || min->order_count > save->order_count)
 		{
 			if (min != 0)
@@ -95,11 +94,9 @@ t_info	*find_best_element(t_stack *stack_a, t_stack *stack_b)
 
 void	sort_element(t_stack *stack_a, t_stack *stack_b)
 {
-	t_node	*start;
 	t_info	*save;
 
 	save = 0;
-	start = stack_a->bottom;
 	while (stack_b->count > 0)
 	{
 		save = find_best_element(stack_a, stack_b);
@@ -110,12 +107,7 @@ void	sort_element(t_stack *stack_a, t_stack *stack_b)
 		else
 			case_common(stack_a, stack_b, save);
 		pa(stack_a, stack_b);
-		if (stack_a->top->prev->n < stack_a->top->n)
-		{
-			ra(stack_a);
-			start = stack_a->bottom;
-		}
 	}
 	free(save);
-	move_to_bottom(stack_a, start);
+	move_to_bottom(stack_a, find_max_node(stack_a));
 }
