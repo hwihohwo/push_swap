@@ -1,57 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap_rules_2.c                                     :+:      :+:    :+:   */
+/*   swap_rules_4.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/05 19:37:12 by marvin            #+#    #+#             */
-/*   Updated: 2023/01/27 15:58:13 by seonghwc         ###   ########.fr       */
+/*   Created: 2023/01/27 15:57:08 by seonghwc          #+#    #+#             */
+/*   Updated: 2023/01/27 15:57:47 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ra(t_stack *stack_a)
-{
-	t_node	*temp;
-
-	if (stack_a->count < 2)
-		return ;
-	temp = stack_a->top;
-	stack_a->top = stack_a->top->prev;
-	stack_a->top->next = 0;
-	temp->next = stack_a->bottom;
-	temp->next->prev = temp;
-	temp->prev = 0;
-	stack_a->bottom = temp;
-	ft_printf("ra\n");
-}
-
-void	rb(t_stack *stack_b)
-{
-	t_node	*temp;
-
-	if (stack_b->count < 2)
-		return ;
-	temp = stack_b->top;
-	stack_b->top = stack_b->top->prev;
-	stack_b->top->next = 0;
-	temp->next = stack_b->bottom;
-	temp->next->prev = temp;
-	temp->prev = 0;
-	stack_b->bottom = temp;
-	ft_printf("rb\n");
-}
-
-void	rr(t_stack *stack_a, t_stack *stack_b)
-{
-	ra_sub(stack_a);
-	rb_sub(stack_b);
-	ft_printf("rr\n");
-}
-
-void	rra(t_stack *stack_a)
+void	rra_sub(t_stack *stack_a)
 {
 	t_node	*temp;
 
@@ -64,10 +25,9 @@ void	rra(t_stack *stack_a)
 	stack_a->top->next = temp;
 	temp->next = 0;
 	stack_a->top = temp;
-	ft_printf("rra\n");
 }
 
-void	rrb(t_stack *stack_b)
+void	rrb_sub(t_stack *stack_b)
 {
 	t_node	*temp;
 
@@ -80,5 +40,4 @@ void	rrb(t_stack *stack_b)
 	stack_b->top->next = temp;
 	temp->next = 0;
 	stack_b->top = temp;
-	ft_printf("rrb\n");
 }

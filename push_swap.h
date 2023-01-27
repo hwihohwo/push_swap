@@ -6,7 +6,7 @@
 /*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 09:22:00 by marvin            #+#    #+#             */
-/*   Updated: 2023/01/19 20:52:29 by seonghwc         ###   ########.fr       */
+/*   Updated: 2023/01/27 16:00:14 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,12 @@ void	rr(t_stack *stack_a, t_stack *stack_b);
 void	rra(t_stack *stack_a);
 void	rrb(t_stack *stack_b);
 void	rrr(t_stack *stack_a, t_stack *stack_b);
+void	sa_sub(t_stack *stack_a);
+void	sb_sub(t_stack *stack_b);
+void	ra_sub(t_stack *stack_a);
+void	rb_sub(t_stack *stack_b);
+void	rra_sub(t_stack *stack_a);
+void	rrb_sub(t_stack *stack_b);
 int		is_integer(char *argv);
 int		check_dup(t_stack *stack_a, int num);
 int		check_and_push_integer(t_stack *stack_a, char *argv);
@@ -86,5 +92,7 @@ void	case_rrr(t_stack *stk_a, t_stack *stk_b, t_info *save);
 void	case_common(t_stack *stk_a, t_stack *stk_b, t_info *save);
 int		find_right_position(t_stack *stack, int n);
 t_node	*find_max_node(t_stack *stack);
+int		find_pivot(t_stack *stack);
+t_node	*find_pivot_sub(t_stack *stack);
 
 #endif

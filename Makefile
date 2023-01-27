@@ -6,7 +6,7 @@
 #    By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/13 23:26:17 by marvin            #+#    #+#              #
-#    Updated: 2023/01/19 22:37:05 by seonghwc         ###   ########.fr        #
+#    Updated: 2023/01/27 15:58:41 by seonghwc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,13 +23,14 @@ SRCS                    = main.c \
 						stack_funcs.c \
 						swap_rules_1.c \
 						swap_rules_2.c \
-						swap_rules_3.c
+						swap_rules_3.c \
+						swap_rules_4.c
 OBJS                    = $(SRCS:%.c=%.o)
 FLAGS                   = -Wall -Wextra -Werror
 
 $(NAME)     :   $(OBJS)
 	@$(MAKE) -C libft/ re
-	$(CC) $(FLAGS) -o $(NAME) $(SRCS) -L ./libft/ -lft -I .
+	$(CC) $(FLAGS) -o $(NAME) $(SRCS) -L ./libft/ -lft -I . -g
 all :   $(NAME)
 clean   :
 	rm -f $(OBJS)

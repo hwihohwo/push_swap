@@ -6,7 +6,7 @@
 /*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 14:07:28 by marvin            #+#    #+#             */
-/*   Updated: 2023/01/19 20:36:30 by seonghwc         ###   ########.fr       */
+/*   Updated: 2023/01/27 15:58:22 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void	sb(t_stack *stack_b)
 
 void	ss(t_stack *stack_a, t_stack *stack_b)
 {
-	sa(stack_a);
-	sb(stack_b);
+	sa_sub(stack_a);
+	sb_sub(stack_b);
 	ft_printf("ss\n");
 }
 

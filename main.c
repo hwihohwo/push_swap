@@ -6,12 +6,11 @@
 /*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 09:34:49 by marvin            #+#    #+#             */
-/*   Updated: 2023/01/19 22:36:48 by seonghwc         ###   ########.fr       */
+/*   Updated: 2023/01/26 20:05:42 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
 
 int	main(int argc, char *argv[])
 {
@@ -40,7 +39,6 @@ int	main(int argc, char *argv[])
 	clear_stack(&stack_a);
 	return (0);
 }
-
 
 // void	print_all(t_stack *stack)
 // {
