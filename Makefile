@@ -6,7 +6,7 @@
 #    By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/13 23:26:17 by marvin            #+#    #+#              #
-#    Updated: 2023/01/27 15:58:41 by seonghwc         ###   ########.fr        #
+#    Updated: 2023/01/27 16:07:24 by seonghwc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ FLAGS                   = -Wall -Wextra -Werror
 
 $(NAME)     :   $(OBJS)
 	@$(MAKE) -C libft/ re
-	$(CC) $(FLAGS) -o $(NAME) $(SRCS) -L ./libft/ -lft -I . -g
+	$(CC) $(FLAGS) -o $(NAME) $(SRCS) -L ./libft/ -lft -I .
 all :   $(NAME)
 clean   :
 	rm -f $(OBJS)
