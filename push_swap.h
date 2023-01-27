@@ -6,7 +6,7 @@
 /*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 09:22:00 by marvin            #+#    #+#             */
-/*   Updated: 2023/01/27 16:00:14 by seonghwc         ###   ########.fr       */
+/*   Updated: 2023/01/27 16:40:59 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,6 @@ int		find_right_position(t_stack *stack, int n);
 t_node	*find_max_node(t_stack *stack);
 int		find_pivot(t_stack *stack);
 t_node	*find_pivot_sub(t_stack *stack);
+long	ft_atoi_push_swap(const char *str);
 
 #endif

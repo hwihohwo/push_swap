@@ -6,7 +6,7 @@
 #    By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/13 23:26:17 by marvin            #+#    #+#              #
-#    Updated: 2023/01/27 16:07:24 by seonghwc         ###   ########.fr        #
+#    Updated: 2023/01/27 16:41:11 by seonghwc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ CC						= cc
 SRCS                    = main.c \
 						push_swap_utils_1.c \
 						push_swap_utils_2.c \
+						push_swap_utils_3.c \
 						sort_small.c \
 						sort1.c \
 						sort2.c \

@@ -6,7 +6,7 @@
 /*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 20:21:28 by marvin            #+#    #+#             */
-/*   Updated: 2023/01/19 20:34:25 by seonghwc         ###   ########.fr       */
+/*   Updated: 2023/01/27 16:40:46 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	check_dup(t_stack *stack_tmp, int num)
 int	check_and_push_integer(t_stack *stack_tmp, char *argv)
 {
 	int			i;
-	long long	ret;
+	long		ret;
 
 	i = 0;
 	while (argv[i])
@@ -69,7 +69,7 @@ int	check_and_push_integer(t_stack *stack_tmp, char *argv)
 			i++;
 		if (argv[i] == '\0')
 			break ;
-		ret = ft_atoi(&argv[i]);
+		ret = ft_atoi_push_swap(&argv[i]);
 		if (ret == 0 && argv[i + 1] == '-')
 			return (0);
 		if (ret < -2147483648 || ret > 2147483647)
