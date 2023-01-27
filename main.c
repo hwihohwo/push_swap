@@ -6,7 +6,7 @@
 /*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 09:34:49 by marvin            #+#    #+#             */
-/*   Updated: 2023/01/26 20:05:42 by seonghwc         ###   ########.fr       */
+/*   Updated: 2023/01/27 16:07:53 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,3 @@ int	main(int argc, char *argv[])
 	clear_stack(&stack_a);
 	return (0);
 }
-
-// void	print_all(t_stack *stack)
-// {
-// 	t_node	*temp;
-
-// 	temp = stack->top;
-// 	while (temp)
-// 	{
-// 		ft_printf("%d\n", temp->n);
-// 		temp = temp->prev;
-// 	}
-// }
