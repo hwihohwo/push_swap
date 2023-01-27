@@ -6,7 +6,7 @@
 /*   By: seonghwc <seonghwc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 18:03:54 by marvin            #+#    #+#             */
-/*   Updated: 2023/01/26 22:10:31 by seonghwc         ###   ########.fr       */
+/*   Updated: 2023/01/27 18:48:52 by seonghwc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	sort_element(t_stack *stack_a, t_stack *stack_b)
 		else
 			case_common(stack_a, stack_b, save);
 		pa(stack_a, stack_b);
+		free(save);
 	}
-	free(save);
 	move_to_bottom(stack_a, find_max_node(stack_a));
 }
